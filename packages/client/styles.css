@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #15171e;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+a {
+  color: #0055ff;
+  text-decoration: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #0055ff;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #292c3a;
+}

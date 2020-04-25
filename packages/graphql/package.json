@@ -1,0 +1,19 @@
+{
+  "name": "@suiz/graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.12.0",
+    "graphql-tools": "^5.0.0",
+    "mongoose": "^5.9.9"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.7.13"
+  }
+}
