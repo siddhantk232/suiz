@@ -1,21 +1,21 @@
 {
-	"name": "suiz",
-	"version": "1.0.0",
-	"description": "A dead simple quiz platform for teachers and students",
-	"main": "index.js",
-	"repository": "https://github.com/siddhantk232/suiz",
-	"scripts": {
-		"build": "yarn workspace @suiz/client run build",
-		"start": "yarn workspace @suiz/server run start",
-		"dev": "export $(cat .env | xargs) && yarn workspace @suiz/server run dev"
-	},
-	"author": "siddhant",
-	"license": "ISC",
-	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
-	"engines": {
-		"node": "10.x"
-	}
+  "name": "suiz",
+  "version": "1.0.0",
+  "description": "A dead simple quiz platform for teachers and students",
+  "main": "index.js",
+  "repository": "https://github.com/siddhantk232/suiz",
+  "scripts": {
+    "build": "yarn workspace @suiz/client run build",
+    "start": "yarn workspace @suiz/server run start",
+    "dev": "export $(cat .env | xargs) && yarn workspace @suiz/server run dev"
+  },
+  "author": "siddhant",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": "13.x"
+  }
 }
