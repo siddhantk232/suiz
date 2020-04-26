@@ -9,6 +9,7 @@ import { CREATE_USER } from '../graphql'
 
 import Layout from '../components/Layout'
 import Card from '../components/Card'
+import { Header, Title, Subtitle } from '../components/Header'
 
 const Index = () => {
   const router = useRouter()
@@ -65,16 +66,8 @@ const Index = () => {
 
   return (
     <Layout>
-      <header
-        style={{
-          height: '50vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        <Title color="#0055ff" size="4" isBrand>
+      <Header>
+        <Title center color="#0055ff" size="4" isBrand>
           SUIZ
         </Title>
         <Subtitle>
@@ -96,12 +89,12 @@ const Index = () => {
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
         />
-      </header>
+      </Header>
 
       <br />
 
       <section>
-        <Title color="#fff" size="2">
+        <Title center color="#fff" size="2">
           HOW IT WORKS?
         </Title>
 
@@ -116,26 +109,6 @@ const Index = () => {
     </Layout>
   )
 }
-
-const Title = styled.h1`
-  margin: 0;
-  color: ${({ color }) => color};
-  text-align: center;
-  font-family: 'Luckiest Guy', cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${({ size }) => `${size}rem`};
-  letter-spacing: ${({ isBrand }) => (isBrand ? '0.17em' : null)};
-`
-
-const Subtitle = styled.p`
-  margin-top: 5px;
-  text-align: center;
-  font-family: Luckiest Guy;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 0.8rem;
-`
 
 const Button = styled.button`
   border: 0;

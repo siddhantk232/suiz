@@ -1,11 +1,46 @@
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Layout = ({ children }) => (
-  <div>
-    {children}
-    <Footer />
-  </div>
-)
+const Layout = ({ children }) => {
+  const [user, setUser] = useState<{
+    name: string
+    email: string
+    imageUrl: string
+  }>()
+
+  const router = useRouter()
+
+  useEffect(() => {
+    const localUser = JSON.parse(localStorage.getItem('user'))
+
+    if (localUser)
+      setUser({
+        name: localUser.name,
+        email: localUser.email,
+        imageUrl: localUser.imageUrl
+      })
+  }, [])
+
+  return (
+    <div>
+      <StyledNav>
+        <Link href="/">
+          <a>SUIZ</a>
+        </Link>
+
+        {user?.name && router.pathname !== '/' && (
+          <User>
+            <img src={user.imageUrl} />
+          </User>
+        )}
+      </StyledNav>
+      {children}
+      <Footer />
+    </div>
+  )
+}
 
 function Footer() {
   return (
@@ -43,6 +78,34 @@ const StyledFooter = styled.footer`
   margin-top: 20px;
   width: 100%;
   height: 4em;
+`
+
+const StyledNav = styled.nav`
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    text-decoration: none;
+    font-family: Luckiest Guy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 3rem;
+    letter-spacing: 0.07em;
+  }
+`
+
+const User = styled.button`
+  border: 0;
+  background-color: transparent;
+  img {
+    border-radius: 50%;
+    height: 40px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export default Layout
