@@ -16,6 +16,6 @@
     "packages/*"
   ],
   "engines": {
-    "node": "13.x"
+    "node": "10.x"
   }
 }
