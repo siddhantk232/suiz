@@ -1,25 +1,51 @@
 import { gql } from 'apollo-server-express'
 
 const typeDefs = gql`
-  type Query {
-    hello: String!
-  }
-
   input userInput {
     name: String!
     email: String!
     imageUrl: String!
   }
 
-  type User {
-    id: ID
+  input inputQuestion {
+    question: String
+    options: [String]
+    answer: String
+  }
+
+  input quizInput {
     name: String
-    imageUrl: String
-    email: String
+    questions: [inputQuestion]
+  }
+
+  type User {
+    id: ID!
+    name: String!
+    imageUrl: String!
+    email: String!
+    token: String!
+  }
+
+  type Question {
+    question: String
+    options: [String]
+    answer: String
+  }
+
+  type Quiz {
+    id: ID!
+    name: String!
+    questions: [Question!]!
+    createdBy: User!
+  }
+
+  type Query {
+    quizzes: [Quiz]!
   }
 
   type Mutation {
-    createUser(input: userInput!): User
+    createUser(email: String!, name: String!, imageUrl: String!): User!
+    createQuiz(input: quizInput!): Quiz!
   }
 `
 
