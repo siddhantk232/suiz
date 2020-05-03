@@ -8,9 +8,10 @@ const typeDefs = gql`
   }
 
   input inputQuestion {
-    question: String
-    options: [String]
-    answer: String
+    question: String!
+    options: [String!]!
+    answer: String!
+    time: Int!
   }
 
   input quizInput {
@@ -27,9 +28,10 @@ const typeDefs = gql`
   }
 
   type Question {
-    question: String
-    options: [String]
-    answer: String
+    question: String!
+    options: [String!]!
+    answer: String!
+    time: Int!
   }
 
   type Quiz {

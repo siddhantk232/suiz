@@ -6,10 +6,13 @@ export interface IUser extends Document {
   imageUrl: string
 }
 
-const userSchema: Schema = new Schema({
-  name: String,
-  email: String,
-  imageUrl: String
-})
+const userSchema: Schema = new Schema(
+  {
+    name: String,
+    email: String,
+    imageUrl: String
+  },
+  { timestamps: true }
+)
 
 export default model<IUser>('User', userSchema)

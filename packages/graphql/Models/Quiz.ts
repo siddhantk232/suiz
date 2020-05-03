@@ -13,19 +13,23 @@ export interface IQuiz extends Document {
   createdBy: IUser
 }
 
-const quizSchema = new Schema({
-  name: String,
-  questions: [
-    {
-      question: String,
-      options: [String],
-      answer: String
+const quizSchema = new Schema(
+  {
+    name: String,
+    questions: [
+      {
+        question: String,
+        time: Number, // time alloted for each question in seconds
+        options: [String],
+        answer: String
+      }
+    ],
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     }
-  ],
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  }
-})
+  },
+  { timestamps: true }
+)
 
 export default model<IQuiz>('Quiz', quizSchema)
