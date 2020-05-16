@@ -1,0 +1,10 @@
+query Quizzes {
+  quizzes {
+    name
+    questions {
+      question
+      answer
+      options
+    }
+  }
+}

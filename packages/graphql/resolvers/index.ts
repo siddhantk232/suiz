@@ -6,7 +6,7 @@ import { IUser } from '../Models/User'
 
 export default {
   Query: {
-    quizzes: async (_, __, { models }) => {
+    quizzes: async (_, __, { models, user }) => {
       const { Quiz } = models
 
       const quizzes: IQuiz = await Quiz.find().populate('createdBy')
@@ -30,13 +30,12 @@ export default {
           SECRET_KEY,
           { expiresIn: '1y' }
         )
+        const resp = { ...user._doc, token, id: user.id }
 
-        return { ...user, token, id: user.id }
+        return resp
       }
 
       const newUser: IUser = new User({ name, email, imageUrl })
-
-      await newUser.save()
 
       const token = jwt.sign(
         { name: user.name, email: user.email, id: newUser.id },
@@ -44,7 +43,9 @@ export default {
         { expiresIn: '1y' }
       )
 
-      return { ...newUser, token, id: user.id }
+      const resp = { ...newUser._doc, token, id: user.id }
+
+      return resp
     },
 
     createQuiz: async (_, { input: { name, questions } }, { models, user }) => {

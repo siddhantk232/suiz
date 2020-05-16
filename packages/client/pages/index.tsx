@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { GoogleLogin, GoogleLoginResponse } from 'react-google-login'
-import { useMutation } from '@apollo/react-hooks'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 
 import { withApollo } from '../apollo/apollo'
-import { CREATE_USER } from '../graphql'
 
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import { Header, Title, Subtitle } from '../components/Header'
+import { useCreateUserMutation } from '../generated/graphql'
 
 const Index = () => {
   const router = useRouter()
-
   const [user, setUser] = useState<{
     name: string
     email: string
     imageUrl: string
   }>()
-  const [addUser] = useMutation<
-    any,
-    {
-      input: {
-        name: string
-        email: string
-        imageUrl: string
-      }
-    }
-  >(CREATE_USER)
+
+  const [addUser] = useCreateUserMutation()
 
   const handleRegistration = signInWithGoogle => {
     if (user?.name) {
@@ -44,7 +34,7 @@ const Index = () => {
     } = res
 
     const data: any = await addUser({
-      variables: { input: { email, name, imageUrl } }
+      variables: { email, name, imageUrl }
     })
 
     if (data.data.createUser.name) {

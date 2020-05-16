@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "author": "givehug",
   "license": "ISC",
@@ -28,8 +29,12 @@
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.13.5",
     "@types/react": "16.9.33",
     "babel-plugin-styled-components": "^1.10.7",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "@graphql-codegen/typescript": "1.13.5",
+    "@graphql-codegen/typescript-react-apollo": "1.13.5",
+    "@graphql-codegen/typescript-operations": "1.13.5"
   }
 }

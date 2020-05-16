@@ -9,12 +9,13 @@ import Quiz from './Models/Quiz'
 import typeDefs from './schema'
 import resolvers from './resolvers'
 
-const schema = makeExecutableSchema({ typeDefs, resolvers })
+// const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 const SECRET_KEY = process.env.JWT_SECRET
 
 const server = new ApolloServer({
-  schema,
+  typeDefs,
+  resolvers,
   context: ({ req }) => {
     try {
       const token = (req.headers['authorization'] as string)?.split(' ')[1]

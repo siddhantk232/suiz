@@ -1,0 +1,7 @@
+mutation CreateUser($email: String!, $name: String!, $imageUrl: String!) {
+  createUser(name: $name, email: $email, imageUrl: $imageUrl) {
+    name
+    email
+    imageUrl
+  }
+}

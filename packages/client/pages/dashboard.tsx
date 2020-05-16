@@ -3,15 +3,23 @@ import styled from 'styled-components'
 
 import { Header, Title } from '../components/Header'
 import Layout from '../components/Layout'
+import { withApollo } from '../apollo/apollo'
+import { useQuizzesQuery } from '../generated/graphql'
 
-export default function Dashboard() {
+const Dashboard = () => {
   const [user, setUser] = useState()
+
+  const { data, loading } = useQuizzesQuery()
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))
 
     if (user) setUser(user)
   }, [])
+
+  if (loading) return <p>loading...</p>
+
+  console.log(data)
 
   return (
     <Layout>
@@ -32,102 +40,24 @@ export default function Dashboard() {
         <br />
 
         <Quizzes>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
+          {data.quizzes.map(quiz => (
+            <Quiz>
+              <div style={{ padding: '20px' }}>
+                <Title isBrand color="#0055ff" size="1.5">
+                  {quiz.name}
+                </Title>
+                <br />
 
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
+                <p>Visited: 789</p>
+                <p>Submitted: 89</p>
+                <p>Questions: 12</p>
+              </div>
 
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
-
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
-
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
-
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
-
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
-
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
-
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
-
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
-
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
-          <Quiz>
-            <div style={{ padding: '20px' }}>
-              <Title isBrand color="#0055ff" size="1.5">
-                NAME
-              </Title>
-              <br />
-
-              <p>Visited: 789</p>
-              <p>Submitted: 89</p>
-              <p>Questions: 12</p>
-            </div>
-
-            <div
-              style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
-            ></div>
-          </Quiz>
+              <div
+                style={{ width: '40%', backgroundColor: 'rgb(255, 0, 229)' }}
+              ></div>
+            </Quiz>
+          ))}
         </Quizzes>
       </Container>
     </Layout>
@@ -176,3 +106,5 @@ const Quizzes = styled.div`
     grid-template-columns: 1fr;
   }
 `
+
+export default withApollo({ ssr: true })(Dashboard)
