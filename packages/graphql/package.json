@@ -11,7 +11,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^8.3.9",
     "@types/mongoose": "^5.7.13",
-    "apollo-server-express": "^2.12.0",
+    "apollo-server-express": "^2.14.2",
     "graphql-tools": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.9"
