@@ -1,0 +1,7 @@
+{
+  "prettier.useTabs": true,
+  "editor.tabSize": 2,
+  "prettier.semi": true,
+  "prettier.printWidth": 80,
+  "prettier.trailingComma": "none"
+}
