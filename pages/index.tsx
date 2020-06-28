@@ -1,37 +1,12 @@
-import { initializeApollo } from "../lib/apolloClient";
-import gql from "graphql-tag";
+import { useHelloQuery } from "hooks/graphql";
 
-interface SsrApolloResult {
-	initialApolloState: { ROOT_QUERY: { hello: string } };
-}
+const IndexPage = () => {
+	const { loading, data, error } = useHelloQuery();
 
-const IndexPage = ({
-	initialApolloState: {
-		ROOT_QUERY: { hello }
-	}
-}: SsrApolloResult) => {
-	return <h1>{hello}</h1>;
+	if (error) return <p>{error.message}</p>;
+	if (loading) return <p>loading...</p>;
+
+	return <h1>{data?.hello}</h1>;
 };
-
-export async function getStaticProps() {
-	const apolloClient = initializeApollo();
-
-	await apolloClient.query({
-		query: GET_QUIZ
-	});
-
-	return {
-		props: {
-			initialApolloState: apolloClient.cache.extract()
-		},
-		unstable_revalidate: 1
-	};
-}
-
-const GET_QUIZ = gql`
-	query Hello {
-		hello
-	}
-`;
 
 export default IndexPage;
