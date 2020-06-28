@@ -9,7 +9,7 @@
 - [x] add scss support
 - [x] typescript setup
 - [x] apollo client setup
-- [ ] graphql code gen setup
+- [x] graphql code gen setup
 - [ ] auth page
 - [ ] `/admin` page for admin dashboard
 - [ ] `/` serve `public/index.html` here
