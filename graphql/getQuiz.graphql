@@ -1,0 +1,11 @@
+query GetQuiz {
+	getQuiz(id: "5ef72fd95fb653688d649872") {
+		id
+		name
+		createdBy {
+			name
+			email
+			imageUrl
+		}
+	}
+}

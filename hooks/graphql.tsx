@@ -115,6 +115,21 @@ export type OptionInput = {
   isCorrect?: Maybe<Scalars['Boolean']>;
 };
 
+export type GetQuizQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetQuizQuery = (
+  { __typename?: 'Query' }
+  & { getQuiz: (
+    { __typename?: 'QuizSchema' }
+    & Pick<QuizSchema, 'id' | 'name'>
+    & { createdBy?: Maybe<(
+      { __typename?: 'UserSchema' }
+      & Pick<UserSchema, 'name' | 'email' | 'imageUrl'>
+    )> }
+  ) }
+);
+
 export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -124,6 +139,44 @@ export type HelloQuery = (
 );
 
 
+export const GetQuizDocument = gql`
+    query GetQuiz {
+  getQuiz(id: "5ef72fd95fb653688d649872") {
+    id
+    name
+    createdBy {
+      name
+      email
+      imageUrl
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetQuizQuery__
+ *
+ * To run a query within a React component, call `useGetQuizQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetQuizQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetQuizQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetQuizQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetQuizQuery, GetQuizQueryVariables>) {
+        return ApolloReactHooks.useQuery<GetQuizQuery, GetQuizQueryVariables>(GetQuizDocument, baseOptions);
+      }
+export function useGetQuizLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetQuizQuery, GetQuizQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GetQuizQuery, GetQuizQueryVariables>(GetQuizDocument, baseOptions);
+        }
+export type GetQuizQueryHookResult = ReturnType<typeof useGetQuizQuery>;
+export type GetQuizLazyQueryHookResult = ReturnType<typeof useGetQuizLazyQuery>;
+export type GetQuizQueryResult = ApolloReactCommon.QueryResult<GetQuizQuery, GetQuizQueryVariables>;
 export const HelloDocument = gql`
     query Hello {
   hello

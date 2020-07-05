@@ -1,0 +1,64 @@
+$pageBg: #ececec;
+$googleBtnBg: #4285f4;
+$githubBtnBg: #24292e;
+
+.authContainer {
+	@extend %fullCenter;
+	width: 40%;
+	height: 60vh;
+	flex-direction: column;
+	margin: 60px auto;
+	background-color: lighten($color: $pageBg, $amount: 3);
+}
+
+.githubBtn,
+.githubBtn:active {
+	@extend %btn;
+	background-color: $githubBtnBg;
+
+	&:hover {
+		background-color: #000;
+	}
+}
+
+.googleBtn,
+.googleBtn:active {
+	@extend %btn;
+	background-color: $googleBtnBg;
+
+	&:hover {
+		background-color: darken($color: $googleBtnBg, $amount: 2);
+	}
+}
+
+%btn {
+	@extend %fullCenter;
+	width: 90%;
+	border-radius: 2px;
+	margin: 8px;
+	height: 60px;
+	color: #fff;
+	text-decoration: none;
+
+	svg {
+		height: 24px;
+		width: 24px;
+		margin-right: 4px;
+	}
+
+	b {
+		margin-left: 4px;
+	}
+}
+
+%fullCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.authContainer {
+		width: 95%;
+	}
+}

@@ -10,6 +10,6 @@
 - [x] typescript setup
 - [x] apollo client setup
 - [x] graphql code gen setup
-- [ ] auth page
+- [x] auth page
 - [ ] `/admin` page for admin dashboard
 - [ ] `/` serve `public/index.html` here
