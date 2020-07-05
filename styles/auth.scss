@@ -1,6 +1,4 @@
-$pageBg: #ececec;
-$googleBtnBg: #4285f4;
-$githubBtnBg: #24292e;
+@import "colors";
 
 .authContainer {
 	@extend %fullCenter;
